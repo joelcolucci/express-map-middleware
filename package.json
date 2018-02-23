@@ -9,8 +9,8 @@
     "middleware",
     "map"
   ],
-  "homepage": "https://github.com/joelcolucci/express-map",
-  "bugs": "https://github.com/joelcolucci/express-map/issues",
+  "homepage": "https://github.com/joelcolucci/express-map-middleware",
+  "bugs": "https://github.com/joelcolucci/express-map-middleware/issues",
   "license": "MIT",
   "private": false,
   "devDependencies": {
