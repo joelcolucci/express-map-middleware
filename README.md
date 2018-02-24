@@ -2,11 +2,11 @@
 > Write functions instead of middleware
 
 ## Why express-map-middleware?
-The Express framework features the ability to assign multiple "middleware like" callback functions to a route. This ability allows you to compose your routes as sequences of middleware rather than a single thick controller.
+The Express framework features the ability to assign an array of middlewares to a route. This ability allows you to compose your route logic as sequence of middleware rather than a single thick controller.
 
-**However** this can lead to writing many small pieces of middleware or sneaking logic into places it doesn't belong.
+**However** this can lead to writing many small pieces of middleware or coupling disparate logic into a single piece of middleware.
 
-express-map-middleware allows you to write single purpose functions that set or transform values on Express's request and response objects.
+express-map-middleware allows you to write single purpose functions that set or transform values on Express's request and response objects instead of middleware.
 
 This allows us to write lean decoupled controllers that can easily be re-used in different route handlers.
 
@@ -95,18 +95,66 @@ router.get('/dashboard', [
 
 ## API Reference
 ### mapRequest([options])
-The following table describes the properties of the options argument.
+The key/values in the options object will be evaluated and written to Express's request object.
 
-| Property | Description | Type |
+Each value is evaluated and assigned based on it's type:
+
+| Value Type | Evaluation result |
+| -------- | ----------- |
+| Object | Value assigned to the key |
+| Array | Value assigned to the key |
+| String | Value assigned to the key |
+| Function | Invoked and resulting value assigned to the key |
+
+#### Function Value Type Evaluation
+Values that are functions will be invoked for each incoming request.
+
+The function is invoked with the following parameters.
+
+```javascript
+exampleFunction(value, request, response)
+```
+
+| Function Parameter | Description |
 | -------- | ----------- | ---- |
-| Coming soon.. | |
+| value | Current value assigned to the key on the request object|
+| request | Express's request object|
+| response | Express's response object|
+
+#### Caveats
+* If a key is present on the request object it's value will be overwritten.
+* If you do not want to overwrite a value, assign a function to the key that checks the `value` argument prior to returning a new value.
 
 ### mapResponse([options])
-The following table describes the properties of the options argument.
+The key/values in the options object will be evaluated and written to Express's response object.
 
-| Property | Description | Type |
+Each value is evaluated and assigned based on it's type:
+
+| Value Type | Evaluation result |
+| -------- | ----------- |
+| Object | Value assigned to the key |
+| Array | Value assigned to the key |
+| String | Value assigned to the key |
+| Function | Invoked and resulting value assigned to the key |
+
+#### Function Value Type Evaluation
+Values that are functions will be invoked for each incoming request.
+
+The function is invoked with the following parameters.
+
+```javascript
+exampleFunction(value, request, response)
+```
+
+| Function Parameter | Description |
 | -------- | ----------- | ---- |
-| Coming soon.. | |
+| value | Current value assigned to the key on the request object|
+| request | Express's request object|
+| response | Express's response object|
+
+#### Caveats
+* If a key is present on the response object it's value will be overwritten.
+* If you do not want to overwrite a value, assign a function to the key that checks the `value` argument prior to returning a new value.
 
 ## Contributing
 Coming soon..
