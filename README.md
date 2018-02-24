@@ -148,7 +148,7 @@ exampleFunction(value, request, response)
 
 | Function Parameter | Description |
 | -------- | ----------- |
-| value | Current value assigned to the key on the request object|
+| value | Current value assigned to the key on the response object|
 | request | Express's request object|
 | response | Express's response object|
 
