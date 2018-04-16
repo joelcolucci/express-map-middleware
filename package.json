@@ -1,7 +1,7 @@
 {
   "name": "express-map-middleware",
   "description": "Write functions instead of custom middleware.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./lib/index.js",
   "author": "Joel Colucci",
   "keywords": [
