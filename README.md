@@ -1,4 +1,4 @@
-# express-map-middleware
+# express-map-middleware [![NPM version](https://img.shields.io/npm/v/express-map-middleware.svg)](https://www.npmjs.com/package/express-map-middleware)
 > Write functions instead of middleware
 
 ## Why express-map-middleware?
